@@ -56,6 +56,20 @@ userSchema.pre("save", function (next) {
   }
 });
 
+userSchema.methods.comparePassword = function (plainPassword, cb) {
+  // plainPassword 1234567 암호화된 비밀번호 $2b$10$C/ZwpC7x67gWn4K7xyBRMecRf5/tpHBJoPy4YUxWhwJd9dq4XDbtm
+  // 두개가 같은지 체크
+  bcrypt.compare(plainPassword, this.password, function (err, isMatch) {
+    // cd = callback
+    if (err)
+      return (
+        cb(err),
+        // 에러가 없고 매치된다는 뜻
+        cb(null, isMatch)
+      );
+  });
+};
+
 const User = mongoose.model("User", userSchema);
 
 module.exports = { User };
