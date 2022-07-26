@@ -3,6 +3,7 @@
 // npm install mongoose --save
 // npm install body-parser --save
 // npm install nodemon --save-dev
+// npm install bcrypt --save
 
 const express = require("express");
 const app = express();
