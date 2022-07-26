@@ -98,4 +98,15 @@ app.get("/api/users/auth", auth, (req, res) => {
   });
 });
 
+// 로그아웃
+// 로그인 할때 DB에 담아줬던 토큰값을 초기화시킴
+app.get("/api/users/logout", auth, (req, res) => {
+  User.findOneAndUpdate({ _id: req.user._id }, { token: "" }, (err, user) => {
+    if (err) return res.json({ success: false, err });
+    return res.status(200).send({
+      success: true,
+    });
+  });
+});
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
