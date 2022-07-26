@@ -4,18 +4,22 @@
 // npm install body-parser --save
 // npm install nodemon --save-dev
 // npm install bcrypt --save
+// npm install jsonwebtoken --save
+// npm install cookie-parser --save
 
 const express = require("express");
 const app = express();
 const port = 5000;
 const bodyParser = require("body-parser");
-
+const cookieParser = require("cookie-parser");
 const config = require("./config/key");
 
 const { User } = require("./models/User");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+app.use(cookieParser());
 
 const mongoose = require("mongoose");
 mongoose
@@ -62,7 +66,16 @@ app.post("/login", (req, res) => {
         });
 
       // 비밀번호 맞다면 토큰을 생성하기.
-      user.generateToken((err, user) => {});
+      user.generateToken((err, user) => {
+        if (err) return res.status(400).send(err);
+
+        // 토큰을 쿠키, 로컬스토리지 와 같은 곳에 저장할 수 있다.
+        // 토큰을 쿠키에 저장 (cookie의 'x_auth'는 아무런 이름 가능)
+        res
+          .cookie("x_auth", user.token)
+          .status(200)
+          .json({ loginSuccess: true, userId: user._id });
+      });
     });
   });
 });
