@@ -1,4 +1,5 @@
 // npm init
+// boiler-plate 경로에 설치 server X
 // npm install express --save
 // npm install mongoose --save
 // npm install body-parser --save
@@ -6,6 +7,11 @@
 // npm install bcrypt --save
 // npm install jsonwebtoken --save
 // npm install cookie-parser --save
+
+// 백엔드와 프론트엔드를 동시에 켜주는 라이브러리
+// npm install concurrently --save
+// package.json에 추가 (npm run start는 client폳더에 있어 경로 설정)
+// "dev": "concurrently \"npm run backend\" \"npm run start --prefix client\""
 
 const express = require("express");
 const app = express();
