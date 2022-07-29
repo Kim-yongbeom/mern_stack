@@ -11,7 +11,7 @@ import ReduxThunk from "redux-thunk";
 import Reducer from "./_reducers";
 
 // antd 라이브러리 호출
-import "antd/dist/antd.css";
+import "antd/dist/antd.min.css";
 
 // redux는 객체형태만 받을 수 있어 프로미스와 함수 형태를 받아주기 위해
 // promiseMiddleware, ReduxThunk 미들웨어를 함께 넣어준다.
