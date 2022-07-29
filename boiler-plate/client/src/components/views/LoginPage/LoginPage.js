@@ -52,7 +52,7 @@ function LoginPage(props) {
         <label>Password</label>
         <input type="Password" value={password} onChange={onPasswordHandler} />
         <br />
-        <button>Login</button>
+        <button>로그인</button>
       </form>
     </div>
   );
