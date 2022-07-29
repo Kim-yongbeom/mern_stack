@@ -2,6 +2,7 @@
 // npm install axios --save
 // npm install http-proxy-middleware --save
 // npm install antd --save
+// npm install redux react-redux redux-promise redux-thunk --save
 
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -12,13 +13,11 @@ import RegisterPage from "./components/views/RegisterPage/RegisterPage";
 function App() {
   return (
     <Router>
-      <div>
-        <Switch>
-          <Route exact path="/" component={LandingPage} />
-          <Route path="/login" component={LoginPage} />
-          <Route path="/register" component={RegisterPage} />
-        </Switch>
-      </div>
+      <Switch>
+        <Route exact path="/" component={LandingPage} />
+        <Route path="/login" component={LoginPage} />
+        <Route path="/register" component={RegisterPage} />
+      </Switch>
     </Router>
   );
 }
