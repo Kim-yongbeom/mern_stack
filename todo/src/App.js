@@ -60,7 +60,7 @@ export default function App() {
     <div className="container">
       <div className="todoBlock">
         <div className="title">
-          <h1>할 일 목록</h1>
+          <h1>목록</h1>
         </div>
 
         {todoData.map((data) => (
@@ -81,8 +81,14 @@ export default function App() {
           <input
             type="text"
             name="value"
-            style={{ flex: "10", padding: "5px" }}
-            placeholder="해야 할 일을 입력하세요."
+            style={{
+              flex: "10",
+              padding: "10px",
+              marginTop: "20px",
+              border: "1px solid #ccc",
+              borderRadius: "10px",
+            }}
+            placeholder="할 일을 입력하세요."
             value={value}
             onChange={handleChange}
           />
@@ -90,7 +96,12 @@ export default function App() {
             type="submit"
             value="입력"
             className="btn"
-            style={{ flex: "1" }}
+            style={{
+              flex: "1",
+              marginTop: "20px",
+              border: "1px solid #ccc",
+              borderRadius: "10px",
+            }}
           />
         </form>
       </div>
