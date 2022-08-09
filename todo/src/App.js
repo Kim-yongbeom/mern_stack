@@ -1,36 +1,16 @@
+// npm install -D tailwindcss postcss autoprefixer
+// npx tailwindcss init
+// npm i react-icons
+// npm install react-beautiful-dnd --save
+
 import React, { useState } from "react";
 import "./App.css";
+import Form from "./components/Form";
+import List from "./components/List";
 
 export default function App() {
   const [todoData, setTodoData] = useState([]);
   const [value, setValue] = useState("");
-
-  const btnStyle = {
-    backgroundColor: "#bbb",
-    color: "#fff",
-    border: "none",
-    padding: "5px 9px",
-    borderRadius: "50%",
-    cursor: "pointer",
-    float: "right",
-  };
-
-  const getStyle = (completed) => {
-    return {
-      padding: "10px",
-      borderBottom: "1px #ccc dotted",
-      textDecoration: completed ? "line-through" : "none",
-    };
-  };
-
-  const handleClick = (id) => {
-    let newTodoData = todoData.filter((data) => data.id !== id);
-    setTodoData(newTodoData);
-  };
-
-  const handleChange = (e) => {
-    setValue(e.target.value);
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -45,65 +25,14 @@ export default function App() {
     setValue("");
   };
 
-  const handleCompleteChange = (id) => {
-    let newTodoData = todoData.map((data) => {
-      if (data.id === id) {
-        data.completed = !data.completed;
-      }
-      return data;
-    });
-
-    setTodoData(newTodoData);
-  };
-
   return (
-    <div className="container">
-      <div className="todoBlock">
-        <div className="title">
-          <h1>목록</h1>
+    <div className="flex items-center justify-center w-screen h-screen bg-blue-200">
+      <div className="w-full p-6 m-4 bg-white rounded-lg shadow md:w-3/4 md:max-w-lg lg:w-3/4 lg:max-w-lg">
+        <div className="flex justify-between mb-3">
+          <h1 className="text-gray-500 text-xl">할 일 목록</h1>
         </div>
-
-        {todoData.map((data) => (
-          <div style={getStyle(data.completed)} key={data.id}>
-            <input
-              type="checkbox"
-              defaultChecked={false}
-              onChange={() => handleCompleteChange(data.id)}
-            />
-            {data.title}
-            <button style={btnStyle} onClick={() => handleClick(data.id)}>
-              x
-            </button>
-          </div>
-        ))}
-
-        <form style={{ display: "flex" }} onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="value"
-            style={{
-              flex: "10",
-              padding: "10px",
-              marginTop: "20px",
-              border: "1px solid #ccc",
-              borderRadius: "10px",
-            }}
-            placeholder="할 일을 입력하세요."
-            value={value}
-            onChange={handleChange}
-          />
-          <input
-            type="submit"
-            value="입력"
-            className="btn"
-            style={{
-              flex: "1",
-              marginTop: "20px",
-              border: "1px solid #ccc",
-              borderRadius: "10px",
-            }}
-          />
-        </form>
+        <List todoData={todoData} setTodoData={setTodoData} />
+        <Form value={value} setValue={setValue} handleSubmit={handleSubmit} />
       </div>
     </div>
   );
