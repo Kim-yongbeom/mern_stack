@@ -6,3 +6,4 @@
 - React
 - hooks(useState, useCallback)
 - 할 일에 관한 데이터는 localStorage에 저장
+- Drag and Drop 
